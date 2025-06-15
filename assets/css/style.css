@@ -74,7 +74,7 @@ body {
   .chat-box {
     display: flex;
     flex-direction: column;
-    height: 76dvh !important;
+    height: 75dvh !important;
     overflow-y: auto;
     border: 1px solid #ffd6e7;
     padding: 1rem;
