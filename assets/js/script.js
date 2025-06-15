@@ -1,6 +1,6 @@
-    const form = document.getElementById("chat-form");
-    const input = document.getElementById("user-input");
-    const chatBox = document.getElementById("chat-box");
+const form = document.getElementById("chat-form");
+const input = document.getElementById("user-input");
+const chatBox = document.getElementById("chat-box");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -10,7 +10,7 @@ form.addEventListener("submit", async (e) => {
   appendMessage("user", message);
   input.value = "";
 
-  appendMessage("yuna", "⏳ Sedang berpikir...");
+  showThinking();
 
   try {
     const res = await fetch("https://yuna-ai.putridinar.workers.dev/", {
@@ -19,18 +19,26 @@ form.addEventListener("submit", async (e) => {
       body: JSON.stringify({ prompt: message }),
     });
 
+    // ⛔ Rate Limit
+    if (res.status === 429) {
+      const data = await res.json();
+      chatBox.lastChild.remove();
+      appendMessage("yuna", data?.error || "⚠️ Batas penggunaan gratis sudah tercapai. Silakan kembali besok ya 💖");
+      return;
+    }
+
     const data = await res.json();
     chatBox.lastChild.remove();
 
-    const bubble = document.createElement("div");
-    bubble.className = "chat-bubble yuna";
+    const bubble = createBubble("yuna");
     chatBox.appendChild(bubble);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    scrollToBottom();
 
     await typeTextAndSpeak(data.reply || "Maaf, YUNA nggak ngerti 😅", (val) => {
       bubble.textContent = val;
-      chatBox.scrollTop = chatBox.scrollHeight;
+      scrollToBottom();
     });
+
   } catch (err) {
     console.error("❌ Gagal minta balasan YUNA:", err);
     chatBox.lastChild.remove();
@@ -38,14 +46,26 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-    function appendMessage(sender, text) {
-      const div = document.createElement("div");
-      div.className = `chat-bubble ${sender}`;
-      div.textContent = text;
-      chatBox.appendChild(div);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
+function appendMessage(sender, text) {
+  const div = createBubble(sender);
+  div.textContent = text;
+  chatBox.appendChild(div);
+  scrollToBottom();
+}
 
+function createBubble(sender) {
+  const div = document.createElement("div");
+  div.className = `chat-bubble ${sender}`;
+  return div;
+}
+
+function showThinking() {
+  appendMessage("yuna", "⏳ YUNA sedang berpikir...");
+}
+
+function scrollToBottom() {
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
 
 async function typeTextAndSpeak(text, callback) {
   const synth = window.speechSynthesis;
@@ -63,6 +83,10 @@ async function typeTextAndSpeak(text, callback) {
   for (const char of text) {
     typed += char;
     callback(typed);
-    await new Promise((r) => setTimeout(r, 50 + Math.random() * 60));
+    await delay(45 + Math.random() * 55);
   }
+}
+
+function delay(ms) {
+  return new Promise((r) => setTimeout(r, ms));
 }
