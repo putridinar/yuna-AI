@@ -37,6 +37,10 @@ body {
   box-shadow: 0 0 0 0.25rem var(--glow-stop-4) !important;
 }
 
+.shadow-text {
+    text-shadow: 1px 1px 3px #842029ab;
+}
+
 /* Scrollbar style untuk dark theme */
 ::-webkit-scrollbar {
   width: 0px;
@@ -68,7 +72,19 @@ body {
   box-shadow: 0 2px 5px rgba(248, 131, 157, 0.3);
 }
 
+.typing-indicator {
+  font-style: italic;
+  font-size: x-small;
+  color: #aaa;
+  margin-top: 4px;
+  padding-left: 10px;
+  animation: blink 1.2s infinite ease-in-out;
+}
 
+@keyframes blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
 
 @media only screen and (max-width: 768px) {
   .chat-box {
