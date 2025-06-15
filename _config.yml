@@ -1,8 +1,8 @@
 # Welcome to Jekyll!
 
 port: 8800
-title: Jarvis Assistant
-description: backend sederhana pakai GPT-4 API untuk jadi otak si Jarvis.
+title: YUNA AI
+description: backend sederhana pakai GPT-4 API untuk jadi otak YUNA.
 baseurl: "" 
 localurl: "<%= ENV['LOCAL_URL'] %>"
 url: "http://localhost:8800" 
