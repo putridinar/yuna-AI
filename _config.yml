@@ -10,8 +10,6 @@ url: "http:putridinar.github.io"
 # Markdown settings
 markdown: kramdown
 
-destination: public
-
 # Sass settings
 sass:
   sass_dir: assets/sass
