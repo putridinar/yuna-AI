@@ -3,9 +3,9 @@
 port: 8800
 title: YUNA AI
 description: backend sederhana pakai GPT-4 API untuk jadi otak YUNA.
-baseurl: "" 
+baseurl: "/yuna-AI" 
 localurl: "<%= ENV['LOCAL_URL'] %>"
-url: "http://localhost:8800" 
+url: "http:putridinar.github.io" 
 
 # Markdown settings
 markdown: kramdown
