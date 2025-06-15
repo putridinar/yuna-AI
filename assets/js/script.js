@@ -13,7 +13,7 @@ form.addEventListener("submit", async (e) => {
   appendMessage("yuna", "⏳ Sedang berpikir...");
 
   try {
-    const res = await fetch("https://yuna-api.androidbutut.workers.dev/", {
+    const res = await fetch("https://yuna-ai.putridinar.workers.dev/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ prompt: message }),
