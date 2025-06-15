@@ -2,8 +2,34 @@ const form = document.getElementById("chat-form");
 const input = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
 
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    console.log("✅ Logged in as:", user.email);
+    chatCount = 0; // reset limit
+  }
+});
+
+let chatCount = 0;
+const LIMIT = 3;
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  if (chatCount >= LIMIT && !firebase.auth().currentUser) {
+    console.log("🚫 Limit tercapai, tampilkan modal login");
+
+    // Pastikan elemen modal ada di DOM
+    const modalElement = document.getElementById("loginModal");
+    if (modalElement) {
+      const loginModal = new bootstrap.Modal(modalElement);
+      loginModal.show();
+    } else {
+      console.error("❌ Modal login tidak ditemukan di DOM");
+    }
+    return;
+  }
+
+  chatCount++;
+
   const message = input.value.trim();
   if (!message) return;
 
@@ -29,6 +55,12 @@ form.addEventListener("submit", async (e) => {
 
     const data = await res.json();
     chatBox.lastChild.remove();
+
+if (data.reply.includes("batas chat gratis")) {
+  const modal = new bootstrap.Modal(document.getElementById("loginModal"));
+  modal.show();
+  return;
+}
 
     const bubble = createBubble("yuna");
     chatBox.appendChild(bubble);

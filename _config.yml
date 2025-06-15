@@ -1,7 +1,7 @@
 # Welcome to Jekyll!
 
 port: 8800
-title: YUNA AI
+title: YUNA-AI
 description: backend sederhana pakai GPT-4 API untuk jadi otak YUNA.
 baseurl: "/yuna-AI" 
 localurl: "<%= ENV['LOCAL_URL'] %>"
