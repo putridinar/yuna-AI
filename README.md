@@ -1,4 +1,4 @@
-# YUNA AI-assistent [DEMO AI-chat](https://putridinar.github.io/yuna-ai/)
+# YUNA AI-assistant [DEMO AI-chat](https://putridinar.github.io/yuna-ai/)
 
 |             YUNA-AI            |
 |--------------------------------|
