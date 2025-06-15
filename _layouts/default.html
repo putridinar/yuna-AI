@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: page.lang | default: 'id | ID' }}">
+
+  {% include head.html %}
+
+  <body class="bg-dark text-light">
+
+    <main class="content" id="mainContent" aria-label="Content">
+      {{ content }}
+    </main>
+    
+  <script src="{{ '/assets/vendor/bootstrap/@popperjs/core/dist/umd/popper.min.js' | relative_url }}"></script>
+  </body>
+</html>

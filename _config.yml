@@ -1,0 +1,42 @@
+# Welcome to Jekyll!
+
+port: 8800
+title: Jarvis Assistant
+description: backend sederhana pakai GPT-4 API untuk jadi otak si Jarvis.
+baseurl: "" 
+localurl: "<%= ENV['LOCAL_URL'] %>"
+url: "http://localhost:8800" 
+
+# Markdown settings
+markdown: kramdown
+
+destination: public
+
+# Sass settings
+sass:
+  sass_dir: assets/sass
+  style: :compressed
+
+# Build settings
+exclude:
+  - package.json
+  - README.md
+  - CNAME
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - dotenv
+
+plugins_dir: _plugins
+
+# Firebase
+api_key: "<%= ENV['api_key'] %>"
+auth_domain: "<%= ENV['auth_domain'] %>"
+project_id: "<%= ENV['project_id'] %>"
+database_url: "<%= ENV['database_url'] %>"
+storage_bucket: "<%= ENV['storage_bucket'] %>"
+sender_id: "<%= ENV['sender_id'] %>"
+app_id: "<%= ENV['app_id'] %>"
+measure_id: "<%= ENV['measure_id'] %>"

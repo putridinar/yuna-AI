@@ -1,0 +1,87 @@
+body.capra .has-glow {
+    --glow-stop-1: #ffc400;
+    --glow-stop-2: #ff9100;
+    --glow-stop-3: #f8682f;
+    --glow-stop-4: #e62c6d;
+    --glow-stop-5: #b25aff;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#mainContent {
+  padding: 0px;
+}
+
+:root {
+--color-text-default: #ff61a9;
+--border-radius-yuna: 25px;
+}
+
+.color-default {
+  color: var(--color-text-default);
+}
+
+.default-border-radius {
+  border-radius: var(--border-radius-yuna) !important;
+}
+
+.default-border-radius:hover {
+  border-color: var(--color-text-default);
+  color: aliceblue;
+}
+
+.default-border-radius:focus {
+  border-color: var(--color-text-default) !important;
+  box-shadow: 0 0 0 0.25rem var(--glow-stop-4) !important;
+}
+
+/* Scrollbar style untuk dark theme */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a; /* Dark track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3b83f636; /* Biru Jarvis */
+  border-radius: 9999px;
+  border: 2px solid #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #60a5fa;
+}
+
+.yuna {
+  background-color: #fce7f3;
+  color: #831843;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin: 10px;
+  max-width: 75%;
+  align-self: flex-start;
+  box-shadow: 0 2px 5px rgba(248, 131, 157, 0.3);
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .chat-box {
+    display: flex;
+    flex-direction: column;
+    height: 76dvh !important;
+    overflow-y: auto;
+    border: 1px solid #ffd6e7;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #fff6fa;
+  }
+  #mainContent {
+    padding: 10px;
+  }
+}
