@@ -1,11 +1,3 @@
-body.capra .has-glow {
-    --glow-stop-1: #ffc400;
-    --glow-stop-2: #ff9100;
-    --glow-stop-3: #f8682f;
-    --glow-stop-4: #e62c6d;
-    --glow-stop-5: #b25aff;
-}
-
 body {
   font-family: 'Segoe UI', sans-serif;
 }
@@ -15,12 +7,28 @@ body {
 }
 
 :root {
---color-text-default: #ff61a9;
---border-radius-yuna: 25px;
+  --color-pink-yuna: #e2538c;
+  --color-pink-default: #ff61a9;
+  --color-text-default: #e62c6d;
+  --color-pink-light: #fac3e2;
+  --glow-stop-1: #ffc400;
+  --glow-stop-2: #ff9100;
+  --glow-stop-3: #f8682f;
+  --glow-stop-4: #e62c6d;
+  --glow-stop-5: #b25aff;
+  --border-radius-yuna: 25px;
 }
 
 .color-default {
-  color: var(--color-text-default);
+  color: var(--color-pink-yuna);
+}
+
+.text-pink {
+  color: var(--color-text-default) !important;
+}
+
+.text-send {
+  color: var(--color-pink-light);
 }
 
 .default-border-radius {
@@ -28,13 +36,13 @@ body {
 }
 
 .default-border-radius:hover {
-  border-color: var(--color-text-default);
+  border-color: var(--color-pink-default);
   color: aliceblue;
 }
 
 .default-border-radius:focus {
-  border-color: var(--color-text-default) !important;
-  box-shadow: 0 0 0 0.25rem var(--glow-stop-4) !important;
+  border-color: var(--color-pink-yuna) !important;
+  box-shadow: 0 0 0 0.25rem var(--color-pink-light) !important;
 }
 
 .shadow-text {
@@ -44,7 +52,7 @@ body {
 /* Scrollbar style untuk dark theme */
 ::-webkit-scrollbar {
   width: 0px;
-  height: 2px;
+  height: 0px;
 }
 
 ::-webkit-scrollbar-track {
@@ -61,6 +69,14 @@ body {
   background-color: #60a5fa;
 }
 
+.btn-pink {
+  background-color: var(--color-pink-yuna) !important;
+}
+
+.btn-pink:hover {
+  background-color: var(--color-pink-default) !important;
+}
+
 .yuna {
   background-color: #fce7f3;
   color: #831843;
@@ -72,17 +88,17 @@ body {
   box-shadow: 0 2px 5px rgba(248, 131, 157, 0.3);
 }
 
-  .modal-content {
+  .modal-content-custom {
     border-radius: 1rem;
     box-shadow: 0 0 30px rgba(0,0,0,0.15);
   }
 
-  .modal-header {
+  .modal-header-custom {
     background: linear-gradient(135deg, #fce4ec, #f8bbd0);
     color: #880e4f;
   }
 
-  .modal-footer {
+  .modal-footer-custom {
     background-color: #f1f1f1;
   }
 
