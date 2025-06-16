@@ -1,16 +1,49 @@
 <!-- Firebase SDK compat -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<script>
-  // Inisialisasi Firebase
-  const firebaseConfig = {
-    apiKey: "{{site.api_key}}",
-    authDomain: "{{site.auth_domain}}",
-    projectId: "{{site.project_id}}",
-  };
 
-  // Inisialisasi Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const provider = new firebase.auth.GoogleAuthProvider();
+<script>
+  const isLocalhost = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+  window.APP_ENV = isLocalhost ? "development" : "production";
+  const configScript = document.createElement("script");
+  configScript.src = isLocalhost
+    ? "./assets/js/firebase-config.local.js"
+    : "./assets/js/firebase-config.js";
+  document.head.appendChild(configScript);
+</script>
+
+<!-- Inisialisasi Firebase setelah config dimuat -->
+<script>
+window.addEventListener("load", () => {
+  let retry = 0;
+  const maxRetries = 20;
+
+  const interval = setInterval(() => {
+    if (window.FIREBASE_CONFIG) {
+      firebase.initializeApp(window.FIREBASE_CONFIG);
+      console.log("✅ Firebase Initialized:", location.hostname);
+
+        // 🔥 Letakkan semua pemanggilan Firebase di sini
+
+        const auth = firebase.auth();
+
+        firebase.auth().onAuthStateChanged((user) => {
+          console.log("Auth user:", user);
+        });
+
+      clearInterval(interval);
+    } else if (retry++ > maxRetries) {
+      clearInterval(interval);
+      console.error("❌ Firebase config tidak ditemukan setelah 1 detik.");
+    }
+  }, 50);
+});
+</script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const badge = document.getElementById("env-badge");
+    if (window.APP_ENV === "development") {
+      badge.style.display = "block";
+    }
+  });
 </script>

@@ -57,6 +57,10 @@ permalink: /
     font-weight: bold;
     color: #fc61a9;
     "></i></a>
+    <button id="logout-btn" class="btn btn-outline-danger d-none">
+      🚪 Logout
+    </button>
+
     <div id="chat-box" class="chat-box"></div>
     <form id="chat-form" class="input-area">
       <input
@@ -72,5 +76,5 @@ permalink: /
   </div>
 
   {% include modalLogin.html %}
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/utils/voice.js"></script>
+  <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/utils/voice.js' | relative_url }}"></script>

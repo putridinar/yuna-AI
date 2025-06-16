@@ -4,11 +4,11 @@
   {% include head.html %}
 
   <body class="bg-dark text-light">
-
+  {% include badge.html %}
     <main class="content" id="mainContent" aria-label="Content">
       {{ content }}
     </main>
-    
+  <script src="{{ '/assets/js/auth.js' | relative_url }}"></script>
   <script src="{{ '/assets/vendor/bootstrap/@popperjs/core/dist/umd/popper.min.js' | relative_url }}"></script>
   </body>
 </html>
