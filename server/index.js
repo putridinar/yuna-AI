@@ -68,7 +68,7 @@ export default {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/llama-prompt-guard-2-22m",
+          model: "llama3-8b-8192",
           messages,
           temperature: 1,
           max_completion_tokens: 1,
