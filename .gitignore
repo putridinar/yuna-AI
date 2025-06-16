@@ -8,4 +8,5 @@ node_modules
 public
 package-lock.json
 Gemfile.lock
+assets/js/firebase-config.js
 assets/js/firebase-config.local.js
