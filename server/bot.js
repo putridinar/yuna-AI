@@ -3,7 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
-const GPT_API = 'https://api.openai.com/v1/chat/completions';
+const GPT_API = 'https://api.groq.com/openai/v1/chat/completions';
 
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
@@ -16,7 +16,7 @@ bot.on('message', async (msg) => {
     const res = await axios.post(
       GPT_API,
       {
-        model: 'gpt-4o',
+        model: 'llama3-8b-8192',
         messages: [{ role: 'user', content: userMessage }],
       },
       {
