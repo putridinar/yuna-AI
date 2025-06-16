@@ -83,6 +83,10 @@ await env.YUNA_USAGE_KV.put(key, JSON.stringify({ count, reset }), { expirationT
 
 Jika melebihi limit:
 
+|           YUNA-login           |
+|--------------------------------|
+|![](./assets/images/yuna-login.png)|
+
 ```json
 {
   "reply": "Maaf, kamu sudah mencapai batas chat gratis. Yuk login untuk akses lebih lanjut!",

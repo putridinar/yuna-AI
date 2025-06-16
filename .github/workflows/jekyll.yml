@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAGES_TOKEN }}
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
