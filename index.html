@@ -34,9 +34,14 @@ permalink: /
       border-bottom-left-radius: 0;
     }
     .chat-box {
+      background-image: url(./assets/images/logo.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      object-fit: cover;
       display: flex;
       flex-direction: column;
-      height: 400px;
+      height: 365px;
       overflow-y: auto;
       border: 1px solid #ffd6e7;
       padding: 1rem;
@@ -77,5 +82,4 @@ permalink: /
   </div>
   {% include voiceModal.html %}
   {% include modalLogin.html %}
-  <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/utils/voice.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/utils/yuna.js' | relative_url }}"></script>
