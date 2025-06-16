@@ -1,0 +1,63 @@
+name: Deploy Jekyll site to Pages
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Inject Firebase config
+        run: |
+          mkdir -p ./public/assets/js
+          echo "window.FIREBASE_CONFIG = {" > ./public/assets/js/firebase-config.js
+          echo "  apiKey: '${{ secrets.FIREBASE_API_KEY }}'," >> ./public/assets/js/firebase-config.js
+          echo "  authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}'," >> ./public/assets/js/firebase-config.js
+          echo "  projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'," >> ./public/assets/js/firebase-config.js
+          echo "  storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}'," >> ./public/assets/js/firebase-config.js
+          echo "  messagingSenderId: '${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}'," >> ./public/assets/js/firebase-config.js
+          echo "  appId: '${{ secrets.FIREBASE_APP_ID }}'" >> ./public/assets/js/firebase-config.js
+          echo "};" >> ./public/assets/js/firebase-config.js
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
