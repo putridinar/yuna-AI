@@ -68,12 +68,12 @@ export default {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "llama3-8b-8192",
+          model: "meta-llama/llama-4-scout-17b-16e-instruct", // meta
           messages,
           temperature: 1,
-          max_completion_tokens: 1,
+          max_completion_tokens: 724,
           top_p: 1,
-          stream: False,
+          stream: True,
           stop: None,
         }),
       });
