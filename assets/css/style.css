@@ -72,6 +72,20 @@ body {
   box-shadow: 0 2px 5px rgba(248, 131, 157, 0.3);
 }
 
+  .modal-content {
+    border-radius: 1rem;
+    box-shadow: 0 0 30px rgba(0,0,0,0.15);
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+    color: #880e4f;
+  }
+
+  .modal-footer {
+    background-color: #f1f1f1;
+  }
+
 .typing-indicator {
   font-style: italic;
   font-size: x-small;
@@ -88,14 +102,8 @@ body {
 
 @media only screen and (max-width: 768px) {
   .chat-box {
-    display: flex;
-    flex-direction: column;
-    height: 75dvh !important;
-    overflow-y: auto;
-    border: 1px solid #ffd6e7;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: #fff6fa;
+    height: 70dvh !important;
+    padding: 0.5rem !important;
   }
   #mainContent {
     padding: 10px;
