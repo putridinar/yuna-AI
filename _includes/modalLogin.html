@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body text-center">
         <p class="mb-4">Kamu sudah mencapai batas interaksi sebagai pengguna anonim. Login untuk melanjutkan percakapan bersama <strong>YUNA</strong> ✨</p>
-        <button id="googleLoginBtn" class="btn btn-outline-light rounded-pill px-4 py-2">
+        <button id="login-btn" class="btn btn-outline-light rounded-pill px-4 py-2">
           <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="20" class="me-2" />
           Login dengan Google
         </button>
@@ -16,19 +16,3 @@
     </div>
   </div>
 </div>
-<script>
-  document.getElementById("googleLoginBtn").addEventListener("click", async () => {
-    try {
-      const result = await auth.signInWithPopup(provider);
-      const user = result.user;
-      console.log("✅ Login sukses:", user.email);
-
-      // Simpan user info atau reset limit di server
-      localStorage.setItem("yunaUser", JSON.stringify({ email: user.email }));
-      location.reload(); // Reload biar sistem tahu sudah login
-    } catch (err) {
-      console.error("❌ Gagal login:", err);
-      alert("Gagal login, coba lagi nanti.");
-    }
-  });
-</script>

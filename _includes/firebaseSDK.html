@@ -14,30 +14,20 @@
 
 <!-- Inisialisasi Firebase setelah config dimuat -->
 <script>
-window.addEventListener("load", () => {
-  let retry = 0;
-  const maxRetries = 20;
+  window.addEventListener("load", () => {
+    const interval = setInterval(() => {
+      if (window.FIREBASE_CONFIG) {
+        firebase.initializeApp(window.FIREBASE_CONFIG);
+        console.log("✅ Firebase Initialized:", location.hostname);
+        clearInterval(interval);
 
-  const interval = setInterval(() => {
-    if (window.FIREBASE_CONFIG) {
-      firebase.initializeApp(window.FIREBASE_CONFIG);
-      console.log("✅ Firebase Initialized:", location.hostname);
-
-        // 🔥 Letakkan semua pemanggilan Firebase di sini
-
-        const auth = firebase.auth();
-
-        firebase.auth().onAuthStateChanged((user) => {
-          console.log("Auth user:", user);
-        });
-
-      clearInterval(interval);
-    } else if (retry++ > maxRetries) {
-      clearInterval(interval);
-      console.error("❌ Firebase config tidak ditemukan setelah 1 detik.");
-    }
-  }, 50);
-});
+        // ✅ Load auth.js setelah Firebase siap
+        const authScript = document.createElement("script");
+        authScript.src = "./assets/js/auth.js";
+        document.body.appendChild(authScript);
+      }
+    }, 50);
+  });
 </script>
 <script>
   window.addEventListener("DOMContentLoaded", () => {
