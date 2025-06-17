@@ -1,8 +1,21 @@
 // ✅ yuna.js - gabungan voice + logic YUNA utama
 
-const greet = window.YunaPersona.getResponse("greeting");
-typeTextAndSpeak(greet, (val) => {
-  bubble.textContent = val;
+const savedMood = localStorage.getItem("yuna-mood");
+if (savedMood) window.YunaPersona.setMood(savedMood);
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const welcome = window.YunaPersona.getResponse("greeting");
+  const bubble = createBubble("yuna");
+  chatBox.appendChild(bubble);
+  scrollToBottom();
+  showThinking();
+  await new Promise((r) => setTimeout(r, 300));
+  chatBox.lastChild.remove();
+
+  await typeTextAndSpeak(welcome, (val) => {
+    bubble.textContent = val;
+    scrollToBottom();
+  });
 });
 
 const savedMood = localStorage.getItem("yuna-mood");
