@@ -1,5 +1,10 @@
 // ✅ yuna.js - gabungan voice + logic YUNA utama
 
+const greet = window.YunaPersona.getResponse("greeting");
+typeTextAndSpeak(greet, (val) => {
+  bubble.textContent = val;
+});
+
 const form = document.getElementById("chat-form");
 const input = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
