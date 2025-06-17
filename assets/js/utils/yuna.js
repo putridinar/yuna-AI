@@ -164,6 +164,10 @@ function showThinking() {
   div.textContent = "🤔 YUNA sedang berpikir...";
   chatBox.appendChild(div);
   scrollToBottom();
+
+ setTimeout(() => {
+   chatBox.querySelector(".chat-bubble.thinking")?.remove();
+ }, 15000); // 15 detik
 }
 
 function scrollToBottom() {
