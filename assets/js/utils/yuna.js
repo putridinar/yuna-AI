@@ -18,9 +18,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-const savedMood = localStorage.getItem("yuna-mood");
-if (savedMood) window.YunaPersona.setMood(savedMood);
-
 const form = document.getElementById("chat-form");
 const input = document.getElementById("user-input");
 const chatBox = document.getElementById("chat-box");
