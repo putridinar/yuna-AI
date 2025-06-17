@@ -155,7 +155,15 @@ function appendMessage(sender, text) {
 }
 
 function showThinking() {
-  appendMessage("yuna", "🤔 YUNA sedang berpikir...");
+  // Cek apakah sudah ada bubble dengan class 'thinking'
+  const existing = chatBox.querySelector(".chat-bubble.thinking");
+  if (existing) return; // Jangan nambah lagi
+
+  const div = createBubble("yuna");
+  div.classList.add("thinking");
+  div.textContent = "🤔 YUNA sedang berpikir...";
+  chatBox.appendChild(div);
+  scrollToBottom();
 }
 
 function scrollToBottom() {
