@@ -2,7 +2,14 @@
 
 const savedMood = localStorage.getItem("yuna-mood");
 if (savedMood) window.YunaPersona.setMood(savedMood);
-
+const hour = new Date().getHours();
+if (hour >= 18) {
+  window.YunaPersona.setMood("chill");
+} else if (hour >= 9 && hour <= 17) {
+  window.YunaPersona.setMood("work");
+} else {
+  window.YunaPersona.setMood("default");
+}
 window.addEventListener("DOMContentLoaded", async () => {
   const welcome = window.YunaPersona.getResponse("greeting");
   const bubble = createBubble("yuna");
